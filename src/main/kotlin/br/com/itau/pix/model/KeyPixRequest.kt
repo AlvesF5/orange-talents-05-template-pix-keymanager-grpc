@@ -5,6 +5,8 @@ import br.com.itau.pix.TipoDaConta
 import br.com.itau.pix.ValidPixKey
 import io.micronaut.core.annotation.Introspected
 import java.util.*
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
 import javax.validation.ConstraintViolationException
 import javax.validation.Validator
 import javax.validation.constraints.NotBlank
@@ -15,9 +17,9 @@ import javax.validation.constraints.Size
 @ValidPixKey
 data class KeyPixRequest(
     @field:NotBlank val clientId: String,
-    @field:NotBlank val tipoChave: TipoChave?,
+    @field:NotBlank @Enumerated(EnumType.STRING) val tipoChave: TipoChave?,
     @field:Size(max=77) val valorChave: String,
-    @field:NotBlank val tipoConta: TipoDaConta
+    @field:NotBlank @Enumerated(EnumType.STRING) val tipoConta: TipoDaConta
 ) {
 
     fun transformaParaKey(validator: Validator) : KeyPix {

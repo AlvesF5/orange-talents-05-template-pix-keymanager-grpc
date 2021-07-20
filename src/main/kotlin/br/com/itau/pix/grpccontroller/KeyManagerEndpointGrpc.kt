@@ -14,6 +14,7 @@ class KeyManagerEndpointGrpc(@Inject val keyManagerEndpointGrpcService: KeyManag
 
     override fun adicionar(request: KeyManagerGrpcRequest, responseObserver: StreamObserver<KeyManagerGrpcResponse>) {
 
+
     val keyRequest = request.transformarParaKeyPixRequest()
 
     val keyPix = keyManagerEndpointGrpcService.keyRegister(keyRequest)

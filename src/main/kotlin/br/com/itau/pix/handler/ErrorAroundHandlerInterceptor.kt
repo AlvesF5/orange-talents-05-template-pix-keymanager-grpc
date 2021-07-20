@@ -8,7 +8,9 @@ import io.grpc.stub.StreamObserver
 import io.micronaut.aop.InterceptorBean
 import io.micronaut.aop.MethodInterceptor
 import io.micronaut.aop.MethodInvocationContext
+import io.micronaut.http.client.exceptions.HttpClientResponseException
 import javax.inject.Singleton
+import javax.validation.ConstraintViolation
 import javax.validation.ConstraintViolationException
 
 @Singleton
@@ -24,6 +26,8 @@ class ErrorAroundHandlerInterceptor : MethodInterceptor<Any, Any> {
 
             val status = when(ex){
                 is ConstraintViolationException -> Status.INVALID_ARGUMENT.withCause(ex).withDescription("Preenchimento iválido!")
+
+                is HttpClientResponseException -> Status.INVALID_ARGUMENT.withCause(ex).withDescription("ID do cliente com formato inválido!")
 
                 is KeyRegisteredException -> Status.ALREADY_EXISTS.withCause(ex).withDescription("Chave já registrada!")
 

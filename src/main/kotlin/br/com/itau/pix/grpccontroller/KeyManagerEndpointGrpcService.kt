@@ -21,6 +21,8 @@ class KeyManagerEndpointGrpcService(@Inject val keyPixRepository: KeyPixReposito
 
         val keyPix = keyPixRequest.transformaParaKey(validator)
 
+
+
         val possivelClienteItauResponse = consultaCliente.consultaBanco(keyPix.clientId, keyPix.tipoConta.name)
 
         if (possivelClienteItauResponse.body.isEmpty){
