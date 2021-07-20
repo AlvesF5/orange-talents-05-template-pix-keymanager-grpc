@@ -1,5 +1,8 @@
-package br.com.itau.pix
+package br.com.itau.pix.handler
 
+import br.com.itau.pix.exception.AccountNotFoundException
+import br.com.itau.pix.exception.KeyRegisteredException
+import br.com.itau.pix.handler.ErrorAroundHandler
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
 import io.micronaut.aop.InterceptorBean

@@ -1,4 +1,4 @@
-package br.com.itau.pix
+package br.com.itau.pix.exception
 
 class KeyRegisteredException(message : String) : Exception(message){
 }

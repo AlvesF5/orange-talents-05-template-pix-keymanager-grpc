@@ -1,4 +1,4 @@
-package br.com.itau.pix
+package br.com.itau.pix.handler
 
 import io.micronaut.aop.Around
 

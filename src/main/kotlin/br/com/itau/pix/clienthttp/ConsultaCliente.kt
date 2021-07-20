@@ -1,5 +1,6 @@
-package br.com.itau.pix
+package br.com.itau.pix.clienthttp
 
+import br.com.itau.pix.ClienteItauResponse
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Consumes

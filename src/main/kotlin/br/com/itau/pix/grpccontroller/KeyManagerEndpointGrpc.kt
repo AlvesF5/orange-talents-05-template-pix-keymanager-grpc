@@ -1,4 +1,6 @@
-package br.com.itau.pix
+package br.com.itau.pix.grpccontroller
+import br.com.itau.pix.*
+import br.com.itau.pix.handler.ErrorAroundHandler
 import io.grpc.stub.StreamObserver
 import javax.inject.Inject
 import javax.inject.Singleton

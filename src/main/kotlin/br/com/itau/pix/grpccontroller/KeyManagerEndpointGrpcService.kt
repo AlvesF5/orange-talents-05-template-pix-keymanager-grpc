@@ -1,5 +1,8 @@
-package br.com.itau.pix
+package br.com.itau.pix.grpccontroller
 
+import br.com.itau.pix.exception.AccountNotFoundException
+import br.com.itau.pix.clienthttp.ConsultaCliente
+import br.com.itau.pix.exception.KeyRegisteredException
 import br.com.itau.pix.model.KeyPix
 import br.com.itau.pix.model.KeyPixRepository
 import br.com.itau.pix.model.KeyPixRequest
@@ -12,7 +15,7 @@ import javax.validation.Validator
 @Validated
 @Singleton
 
-class KeyManagerEndpointGrpcService(@Inject val keyPixRepository: KeyPixRepository, @Inject val consultaCliente:  ConsultaCliente, @Inject val validator: Validator) {
+class KeyManagerEndpointGrpcService(@Inject val keyPixRepository: KeyPixRepository, @Inject val consultaCliente: ConsultaCliente, @Inject val validator: Validator) {
 
     fun keyRegister(@Valid keyPixRequest: KeyPixRequest) : KeyPix {
 
