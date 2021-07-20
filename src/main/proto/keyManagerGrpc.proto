@@ -8,13 +8,35 @@ option objc_class_prefix = "HLW";
 package br.com.itau.pix;
 
 service KeyManagerGrpcService {
-  rpc send (KeyManagerGrpcRequest) returns (KeyManagerGrpcReply) {}
+  rpc adicionar (KeyManagerGrpcRequest) returns (KeyManagerGrpcResponse) {}
 }
 
 message KeyManagerGrpcRequest {
-  string name = 1;
+  string clienteId = 1;
+  TipoDeChave tipoChave = 2;
+  string valorChave = 3;
+  TipoDaConta tipoConta = 4;
+
 }
 
-message KeyManagerGrpcReply {
-  string message = 1;
+message KeyManagerGrpcResponse {
+  string id = 1;
+  string clienteId = 2;
 }
+
+enum TipoDeChave {
+  TIPO_CHAVE_DESCONHECIDO = 0;
+  CPF = 1;
+  CELULAR = 2;
+  EMAIL = 3;
+  ALEATORIA = 4;
+}
+
+enum TipoDaConta{
+  TIPO_CONTA_DESCONHECIDA = 0;
+  CONTA_CORRENTE = 1;
+  CONTA_POUPANCA = 2;
+
+}
+
+
