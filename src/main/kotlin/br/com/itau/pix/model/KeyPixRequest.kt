@@ -2,7 +2,7 @@ package br.com.itau.pix.model
 
 
 import br.com.itau.pix.TipoDaConta
-import br.com.itau.pix.ValidKeyPix
+import br.com.itau.pix.ValidPixKey
 import io.micronaut.core.annotation.Introspected
 import java.util.*
 import javax.validation.ConstraintViolationException
@@ -12,7 +12,7 @@ import javax.validation.constraints.Size
 
 
 @Introspected
-@ValidKeyPix
+@ValidPixKey
 data class KeyPixRequest(
     @field:NotBlank val clientId: String,
     @field:NotBlank val tipoChave: TipoChave?,
@@ -24,7 +24,7 @@ data class KeyPixRequest(
         val keyPix = KeyPix(
             clientId = this.clientId,
             tipoChave = this.tipoChave!!,
-            valorChave = if (this.tipoChave == TipoChave.ALEATORIA) UUID.randomUUID().toString() else  this.valorChave,
+            valorChave = if (this.tipoChave == TipoChave.ALEATORIA) UUID.randomUUID().toString() else  this.valorChave!!,
             tipoConta = this.tipoConta)
 
         val errors = validator.validate(keyPix)

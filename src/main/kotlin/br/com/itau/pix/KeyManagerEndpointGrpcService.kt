@@ -11,7 +11,8 @@ import javax.validation.Validator
 
 @Validated
 @Singleton
-class KeyManagerEndpointGrpcService(@Inject val keyPixRepository: KeyPixRepository, @Inject val consultaCliente:  ConsultaCliente, val validator: Validator) {
+
+class KeyManagerEndpointGrpcService(@Inject val keyPixRepository: KeyPixRepository, @Inject val consultaCliente:  ConsultaCliente, @Inject val validator: Validator) {
 
     fun keyRegister(@Valid keyPixRequest: KeyPixRequest) : KeyPix {
 

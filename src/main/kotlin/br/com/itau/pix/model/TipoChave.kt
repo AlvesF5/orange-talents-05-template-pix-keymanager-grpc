@@ -1,7 +1,12 @@
 package br.com.itau.pix.model
 
-import org.hibernate.validator.internal.constraintvalidators.bv.EmailValidator
+
+
+
+
+import org.hibernate.validator.internal.constraintvalidators.hv.EmailValidator
 import org.hibernate.validator.internal.constraintvalidators.hv.br.CPFValidator
+
 
 enum class TipoChave {
     TIPO_CHAVE_DESCONHECIDO {
