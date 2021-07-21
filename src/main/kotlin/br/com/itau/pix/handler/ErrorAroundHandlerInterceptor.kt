@@ -4,11 +4,13 @@ import br.com.itau.pix.exception.AccountNotFoundException
 import br.com.itau.pix.exception.KeyRegisteredException
 import br.com.itau.pix.handler.ErrorAroundHandler
 import io.grpc.Status
+
 import io.grpc.stub.StreamObserver
 import io.micronaut.aop.InterceptorBean
 import io.micronaut.aop.MethodInterceptor
 import io.micronaut.aop.MethodInvocationContext
 import io.micronaut.http.client.exceptions.HttpClientResponseException
+import java.lang.IllegalArgumentException
 import javax.inject.Singleton
 import javax.validation.ConstraintViolation
 import javax.validation.ConstraintViolationException
@@ -25,7 +27,9 @@ class ErrorAroundHandlerInterceptor : MethodInterceptor<Any, Any> {
             val responseObserver = context.parameterValues[1] as StreamObserver<*>
 
             val status = when(ex){
-                is ConstraintViolationException -> Status.INVALID_ARGUMENT.withCause(ex).withDescription("Preenchimento iválido!")
+                is ConstraintViolationException -> Status.INVALID_ARGUMENT.withCause(ex).withDescription("Preenchimento inválido!")
+
+                is IllegalArgumentException -> Status.INVALID_ARGUMENT.withCause(ex).withDescription("Preenchimento inválido!")
 
                 is HttpClientResponseException -> Status.INVALID_ARGUMENT.withCause(ex).withDescription("ID do cliente com formato inválido!")
 

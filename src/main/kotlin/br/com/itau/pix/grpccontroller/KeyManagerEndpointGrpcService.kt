@@ -30,7 +30,7 @@ class KeyManagerEndpointGrpcService(@Inject val keyPixRepository: KeyPixReposito
         }
 
 
-        val  possivelChave  = keyPixRepository.findByClientIdAndValorChave(keyPix!!.clientId,keyPix!!.valorChave)
+        val  possivelChave  = keyPixRepository.findByClientIdAndValorChave(keyPix.clientId, keyPix.valorChave)
 
         if (possivelChave.isPresent){
             throw KeyRegisteredException("Chave já registrada!")

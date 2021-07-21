@@ -26,7 +26,7 @@ data class KeyPixRequest(
         val keyPix = KeyPix(
             clientId = this.clientId,
             tipoChave = this.tipoChave!!,
-            valorChave = if (this.tipoChave == TipoChave.ALEATORIA) UUID.randomUUID().toString() else  this.valorChave!!,
+            valorChave = if (this.tipoChave == TipoChave.ALEATORIA) UUID.randomUUID().toString() else this.valorChave,
             tipoConta = this.tipoConta)
 
         val errors = validator.validate(keyPix)

@@ -18,3 +18,4 @@ interface ConsultaCliente {
     fun consultaBanco(@PathVariable clienteId : String, @QueryValue tipo: String) : HttpResponse<ClienteItauResponse>
 
 }
+
