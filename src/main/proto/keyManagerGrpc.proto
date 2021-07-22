@@ -11,6 +11,10 @@ service KeyManagerGrpcService {
   rpc adicionar (KeyManagerGrpcRequest) returns (KeyManagerGrpcResponse) {}
 }
 
+service KeyPixRemoveService{
+  rpc removekey (KeyPixRemoveRequest) returns (KeyPixRemoveResponse) {}
+}
+
 message KeyManagerGrpcRequest {
   string clienteId = 1;
   TipoDeChave tipoChave = 2;
@@ -39,4 +43,11 @@ enum TipoDaConta{
 
 }
 
+message KeyPixRemoveRequest{
+  string pixId = 1;
+  string clienteId = 2;
+}
 
+message KeyPixRemoveResponse{
+  string message = 1;
+}
