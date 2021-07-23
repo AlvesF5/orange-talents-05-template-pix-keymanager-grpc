@@ -1,8 +1,6 @@
 package br.com.itau.pix.handler
 
-import br.com.itau.pix.exception.AccountNotFoundException
-import br.com.itau.pix.exception.KeyPixNotFound
-import br.com.itau.pix.exception.KeyRegisteredException
+import br.com.itau.pix.exception.*
 import br.com.itau.pix.handler.ErrorAroundHandler
 import io.grpc.Status
 
@@ -10,6 +8,8 @@ import io.grpc.stub.StreamObserver
 import io.micronaut.aop.InterceptorBean
 import io.micronaut.aop.MethodInterceptor
 import io.micronaut.aop.MethodInvocationContext
+import io.micronaut.http.HttpResponse
+import io.micronaut.http.client.exceptions.HttpClientException
 import io.micronaut.http.client.exceptions.HttpClientResponseException
 import java.lang.IllegalArgumentException
 import javax.inject.Singleton
@@ -34,13 +34,17 @@ class ErrorAroundHandlerInterceptor : MethodInterceptor<Any, Any> {
 
                 is HttpClientResponseException -> Status.INVALID_ARGUMENT.withCause(ex).withDescription("ID do cliente com formato inválido!")
 
+                is KeyRegisterBCBException -> Status.INVALID_ARGUMENT.withCause(ex).withDescription("Não foi possível salvar a chave!")
+
                 is KeyRegisteredException -> Status.ALREADY_EXISTS.withCause(ex).withDescription("Chave já registrada!")
+
+                is KeyRemoveBCBException -> Status.UNKNOWN.withCause(ex).withDescription("Erro desconhecido!")
 
                 is AccountNotFoundException -> Status.NOT_FOUND.withCause(ex).withDescription("Cliente não encontrado!")
 
                 is KeyPixNotFound -> Status.NOT_FOUND.withCause(ex).withDescription("Chave não encontrada!")
 
-                else -> Status.UNKNOWN.withCause(ex).withDescription("Erro desconhecido")
+                else -> Status.UNKNOWN.withCause(ex).withDescription("Erro desconhecido!")
             }
 
             responseObserver.onError(status.asRuntimeException())

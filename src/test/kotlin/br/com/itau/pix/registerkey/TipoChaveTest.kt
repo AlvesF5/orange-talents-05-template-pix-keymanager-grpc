@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Nested
 internal class TipoChaveTest {
 
     @Nested
-    inner class ALEATORIA {
+    inner class RANDOM {
 
         @Test
         fun `deve retornar verdadeiro quando o valor da chave aletoria estiver nulo ou vazio`(){
-            with(TipoChave.ALEATORIA){
+            with(TipoChave.RANDOM){
                 assertTrue(valida(valorChave = null))
                 assertTrue(valida(valorChave = ""))
             }
@@ -21,7 +21,7 @@ internal class TipoChaveTest {
 
         @Test
         fun `deve retornar falso quando o valor da chave aletoria estiver preenchido`(){
-            with(TipoChave.ALEATORIA){
+            with(TipoChave.RANDOM){
                 assertFalse(valida(valorChave = "dfsdf-dfsdf-sdsa"))
             }
         }
@@ -57,11 +57,11 @@ internal class TipoChaveTest {
 
 
     @Nested
-    inner class CELULAR {
+    inner class PHONE {
 
         @Test
         fun `deve retornar falso se o valor da chave for nulo ou vazio`(){
-            with(TipoChave.CELULAR){
+            with(TipoChave.PHONE){
                 assertFalse(valida(valorChave = null))
                 assertFalse(valida(valorChave = ""))
             }
@@ -69,14 +69,14 @@ internal class TipoChaveTest {
 
         @Test
         fun `deve retornar falso se o valor da chave não tiver um formato de numero de celular valido`(){
-            with(TipoChave.CELULAR){
+            with(TipoChave.PHONE){
                 assertFalse(valida(valorChave = "845605"))
             }
         }
 
         @Test
         fun `deve retornar verdadeiro se o valor da chave tiver um formato de numero de celular valido`(){
-            with(TipoChave.CELULAR){
+            with(TipoChave.PHONE){
                 assertTrue(valida(valorChave = "+5573999307376"))
             }
 

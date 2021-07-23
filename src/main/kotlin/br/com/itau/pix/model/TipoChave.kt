@@ -5,10 +5,12 @@ package br.com.itau.pix.model
 
 
 import org.hibernate.validator.internal.constraintvalidators.hv.EmailValidator
+import org.hibernate.validator.internal.constraintvalidators.hv.br.CNPJValidator
 import org.hibernate.validator.internal.constraintvalidators.hv.br.CPFValidator
 
 
 enum class TipoChave {
+
     TIPO_CHAVE_DESCONHECIDO {
         override fun valida(valorChave: String?): Boolean {
             return false
@@ -30,7 +32,23 @@ enum class TipoChave {
             }
 
         }
-    }, CELULAR {
+    },
+
+    CNPJ{
+        override fun valida(valorChave: String?): Boolean {
+            if(valorChave.isNullOrBlank()){
+                return false
+            }
+
+            return CNPJValidator().run {
+                initialize(null)
+                isValid(valorChave,null)
+            }
+        }
+
+    },
+
+    PHONE {
         override fun valida(valorChave: String?): Boolean {
             if (valorChave.isNullOrBlank()){
                 return false
@@ -47,7 +65,7 @@ enum class TipoChave {
                isValid(valorChave,null)
            }
         }
-    }, ALEATORIA {
+    }, RANDOM {
         override fun valida(valorChave: String?) = valorChave.isNullOrBlank()
     };
 

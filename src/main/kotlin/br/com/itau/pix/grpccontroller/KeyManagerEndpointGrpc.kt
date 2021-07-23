@@ -17,6 +17,7 @@ class KeyManagerEndpointGrpc(@Inject val keyManagerEndpointGrpcService: KeyManag
 
     val keyRequest = request.transformarParaKeyPixRequest()
 
+
     val keyPix = keyManagerEndpointGrpcService.keyRegister(keyRequest)
 
 
