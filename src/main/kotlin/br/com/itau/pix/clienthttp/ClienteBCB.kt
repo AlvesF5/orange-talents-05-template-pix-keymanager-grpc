@@ -21,4 +21,7 @@ interface ClienteBCB {
     @Delete("/keys/{key}")
     fun keyRemoveBCB(@Body removeBCBRequest : RemoveBCBRequest) : HttpResponse<RemoveBCBResponse>
 
+    @Get("/keys/{key}")
+    fun keyDetails(@PathVariable key : String) : HttpResponse<RegisterBCBResponse>
+
 }

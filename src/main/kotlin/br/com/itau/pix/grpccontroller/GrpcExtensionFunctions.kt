@@ -1,5 +1,6 @@
 package br.com.itau.pix
 
+import br.com.itau.pix.model.KeyDetailsRequest
 import br.com.itau.pix.model.PixRemoveRequest
 import br.com.itau.pix.model.KeyPixRequest
 import br.com.itau.pix.model.TipoChave
@@ -20,4 +21,5 @@ fun KeyManagerGrpcRequest.transformarParaKeyPixRequest() : KeyPixRequest {
 fun KeyPixRemoveRequest.transformarParaPixRemoveRequest() : PixRemoveRequest{
 
     return PixRemoveRequest(pixId = pixId, clienteId = clienteId)
+
 }

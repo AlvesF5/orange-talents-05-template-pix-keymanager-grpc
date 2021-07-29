@@ -1,5 +1,7 @@
 package br.com.itau.pix
 
+import javax.persistence.Entity
+
 
 data class ClienteItauResponse(
     val tipo: String,
@@ -11,11 +13,13 @@ data class ClienteItauResponse(
 
 }
 
+
 data class Titular(
     val id: String,
     val nome: String,
     val cpf: String
 )
+
 
 data class Instituicao(
     val nome: String,

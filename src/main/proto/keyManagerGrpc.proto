@@ -15,6 +15,12 @@ service KeyPixRemoveService{
   rpc removekey (KeyPixRemoveRequest) returns (KeyPixRemoveResponse) {}
 }
 
+service KeyPixDetailsService{
+  rpc keydetails (KeyPixDetailsRequest) returns (KeyPixDetailsResponse) {}
+}
+
+
+
 message KeyManagerGrpcRequest {
   string clienteId = 1;
   TipoDeChave tipoChave = 2;
@@ -52,3 +58,34 @@ message KeyPixRemoveRequest{
 message KeyPixRemoveResponse{
   string message = 1;
 }
+
+
+message KeyPixDetailsRequest{
+  oneof KeyPixDetailsQuery{
+    string key = 1;
+    InternalKeyPixDetailsRequest internalQuery = 2;
+  }
+}
+
+message KeyPixDetailsResponse{
+
+  string pixId = 1;
+  string clienteId = 2;
+  string tipoDechave = 3;
+  string valorChave = 4;
+  string titular = 5;
+  string documentoTitular = 6;
+  string banco = 7;
+  string agencia = 8;
+  string numeroConta = 9;
+  string tipoConta = 10;
+  string criandaEm = 11;
+
+}
+
+
+message InternalKeyPixDetailsRequest{
+  string pixId = 1;
+  string clienteId = 2;
+}
+

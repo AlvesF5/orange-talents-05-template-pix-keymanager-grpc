@@ -13,4 +13,6 @@ interface KeyPixRepository : JpaRepository<KeyPix, Long> {
     fun findByClientIdAndValorChave(clientId : String, valorChave : String) : Optional<KeyPix>
 
     fun findByIdAndClientId(@NotBlank pixId : Long, @NotBlank clientId: String) : Optional<KeyPix>
+
+    fun findByValorChave(key : String) : Optional<KeyPix>
 }

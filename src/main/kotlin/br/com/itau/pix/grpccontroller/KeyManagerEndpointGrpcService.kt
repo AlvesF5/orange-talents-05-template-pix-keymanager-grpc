@@ -21,9 +21,11 @@ class KeyManagerEndpointGrpcService(@Inject val keyPixRepository: KeyPixReposito
 
     fun keyRegister(@Valid keyPixRequest: KeyPixRequest) : KeyPix {
 
-        val keyPix = keyPixRequest.transformaParaKey(validator)
+        var keyPix = keyPixRequest.transformaParaKey(validator)
 
         val possivelClienteItauResponse = consultaCliente.consultaBanco(keyPix.clientId, keyPix.tipoConta.name)
+
+
 
 
         if (possivelClienteItauResponse.body.isEmpty){
@@ -46,9 +48,16 @@ class KeyManagerEndpointGrpcService(@Inject val keyPixRepository: KeyPixReposito
             throw KeyRegisteredException("Chave já registrada!")
         }
 
+        val dadosConta = possivelClienteItauResponse.body.get()
 
         try {
             val registerKeyBCB = clienteBCB.keyRegisterBCB(registerKeyBCBRequest)
+
+            val accountItau = AccountItau(tipo = dadosConta.tipo, nomeInstituicao = dadosConta.instituicao.nome, isbp = dadosConta.instituicao.ispb, agencia = dadosConta.agencia,
+            numero = dadosConta.numero, idTitular = dadosConta.titular.id, nomeTitular = dadosConta.titular.nome, cpfTitular = dadosConta.titular.cpf)
+
+            keyPix.accountItau=accountItau
+
             keyPixRepository.save(keyPix)
 
             if(keyPix.tipoChave==TipoChave.RANDOM){

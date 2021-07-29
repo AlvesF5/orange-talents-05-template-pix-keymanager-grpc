@@ -3,16 +3,13 @@ package br.com.itau.pix.registerkey
 import br.com.itau.pix.ClienteItauResponse
 import br.com.itau.pix.Instituicao
 import br.com.itau.pix.Titular
+
 import br.com.itau.pix.clienthttp.ConsultaCliente
-import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.HttpStatus
-import io.micronaut.http.client.HttpClient
-import io.micronaut.http.client.annotation.Client
 import io.micronaut.test.annotation.MockBean
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import javax.inject.Inject
