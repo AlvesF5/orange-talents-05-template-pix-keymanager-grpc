@@ -14,12 +14,12 @@ class KeyFilterChave(@field:NotBlank val key : String) : KeyFilter {
     lateinit var keypix : RegisterBCBResponse
     override fun filter(keyPixRepository: KeyPixRepository, clienteBCB: ClienteBCB): DetailsKeyPix {
 
-        val keyRequest = clienteBCB.keyDetails(key = key)
+        val keyRequestBCB = clienteBCB.keyDetails(key = key)
 
         val bancos = Bancos()
 
-        if (keyRequest.body.isPresent){
-            keypix = keyRequest.body()
+        if (keyRequestBCB.body.isPresent){
+            keypix = keyRequestBCB.body()
             details = DetailsKeyPix(
                 tipoChave = keypix.keyType,
                 valorChave = keypix.key,

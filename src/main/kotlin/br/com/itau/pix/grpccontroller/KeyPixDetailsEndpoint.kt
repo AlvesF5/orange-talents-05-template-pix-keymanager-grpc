@@ -28,7 +28,6 @@ class KeyPixDetailsEndpoint(@Inject val keyPixRepository: KeyPixRepository, @Inj
 
         val keyDetails = escolha.filter(keyPixRepository, clienteBCB)
 
-
         responseObserver.onNext(KeyPixDetailsResponse.newBuilder().setPixId(keyDetails.pixId).setClienteId(keyDetails.clienteId)
             .setTipoDechave(keyDetails.tipoChave.name).setValorChave(keyDetails.valorChave).setTitular(keyDetails.titular)
             .setDocumentoTitular(keyDetails.cpf).setBanco(keyDetails.banco).setAgencia(keyDetails.agencia)
