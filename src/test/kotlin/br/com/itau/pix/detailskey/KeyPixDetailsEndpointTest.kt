@@ -87,8 +87,7 @@ internal class KeyPixDetailsEndpointTest(val keyPixRepository: KeyPixRepository,
 
     }
 
-
- 
+    
 
 
     @MockBean(ClienteBCB::class)

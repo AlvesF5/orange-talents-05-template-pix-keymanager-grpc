@@ -19,6 +19,10 @@ service KeyPixDetailsService{
   rpc keydetails (KeyPixDetailsRequest) returns (KeyPixDetailsResponse) {}
 }
 
+service ListKeysService{
+  rpc listKeys (ListKeysRequest) returns (ListKeysResponse) {}
+}
+
 
 
 message KeyManagerGrpcRequest {
@@ -47,7 +51,6 @@ enum TipoDaConta{
   TIPO_CONTA_DESCONHECIDA = 0;
   CONTA_CORRENTE = 1;
   CONTA_POUPANCA = 2;
-
 }
 
 message KeyPixRemoveRequest{
@@ -88,4 +91,22 @@ message InternalKeyPixDetailsRequest{
   string pixId = 1;
   string clienteId = 2;
 }
+
+message ListKeysRequest{
+  string clienteId = 1;
+}
+
+message ListKeysResponse{
+  string clienteId = 1;
+  repeated Keys keys = 2;
+
+  message Keys{
+    string pixId = 1;
+    string tipoChave = 2;
+    string valorChave = 3;
+    string tipoConta = 4;
+    string criadaEm = 5;
+  }
+}
+
 
